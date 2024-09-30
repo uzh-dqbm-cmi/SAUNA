@@ -7,9 +7,6 @@ This project provides scripts for running SAUNA and MaxFinder, tools designed to
 - [Overview](#overview)
 - [Usage](#usage)
 - [Features](#features)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
 
 ## Overview
 
@@ -37,17 +34,5 @@ To use the script, run the following command in your terminal:
 - **Nucleosome Position Detection**: Efficiently identifies nucleosome positions in cfDNA sequencing data using the SAUNA and MaxFinder algorithms.
 - **Automated Workflow**: The `run_everything` script streamlines the process by automatically organizing and managing input and output files for each BAM file, reducing the need for manual file handling.
 - **Customizable Parameters**: Users can easily adjust analysis parameters in the `params.txt` file, allowing for flexibility in the analysis based on specific experimental conditions.
-
-## Contributing
-
-?
-
-## License
-
-?
-
-## Contact
-
-?
 
 
