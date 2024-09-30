@@ -74,7 +74,7 @@ To run the PCA and gene enrichment analysis, use the following command:
 ### Analyses Performed
 
 - **PCA**: Bins the genome into 3000 bins and calculates the mean interpeak distances for each bin and each SeCT sample. Performs PCA on the resulting data and plots the PCA results.
-- **Gene Enrichment Analysis**: Identifies bins where interpeak distances differ significantly between high and low tumor fraction samples and performs gene enrichment analysis on these bins.Two TSV files are generated:
+- **Gene Enrichment Analysis**: Identifies bins where interpeak distances differ significantly between high and low tumor fraction samples and performs gene enrichment analysis on these bins. Two TSV files are generated:
   1. **Cancer-lower.tsv**: Enrichment terms for bins where interpeak distances are shorter in high tumor fraction samples.
   2. **Benign-lower.tsv**: Enrichment terms for bins where interpeak distances are shorter in low tumor fraction samples.
 
