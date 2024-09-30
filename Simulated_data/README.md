@@ -7,11 +7,11 @@ This folder contains scripts for simulating nucleosome configurations and analyz
 ### Simulated Data Generation
 - The `data_simulation.py` script generates 5 `tsv.gz` files containing simulated nucleosome configuration data. The `coverage` parameter in the script can be adjusted to simulate fragment center data for various coverages.
 
-- During the simulation:
-  - **Temperature File**: The temperature for each annealing step is saved in a list, and at the end of the simulation, both the temperature and corresponding annealing steps are saved as a TSV file.
+### F1 Score and Temperature Over Time
+  - **Temperature File**: The temperature for each annealing step is saved in a list during the simulation, and at the end of the simulation, both the temperature and corresponding annealing steps are saved as a TSV file.
   - **F1 Score File**: The creation of the F1 score file involves multiple steps:
     1. The `data_simulation.py` script is run 5 times, each time generating 5 datasets (one for each nucleosome configuration). 
-    2. The SAUNA peak caller is run on each of the 5 generated datasets, and the F1 scores over time are saved in separate TSV files for each scenario.
+    2. The SAUNA peak caller is run on each of the 5 generated datasets. For each simulation run, the F1 score is calculated during each annealing step and is saved in a list during the simulation. At the end of the simulation the F1 scores over time are saved as a TSV file. We end up with one TSV file for each nucleosome configuration.
     3. After the 5 runs, the mean F1 scores over time for each scenario are calculated, and saved in a final TSV file with three columns: mean F1 scores for regular nucleosomes, phase-shifted nucleosomes, and random nucleosomes (The other scenarios are not included here).
 
 ### Mean F1 Score Input
