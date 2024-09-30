@@ -1105,7 +1105,6 @@ class SimController:
                 p = 1.0
             else:
                 p = math.exp(-deltaEnergy / (K_B * self.temperature))
-                #p=0
 
             randomNumber = genrand_real1()
             if randomNumber <= p:
@@ -1130,13 +1129,11 @@ class SimController:
 
 import shutil
 
-# @profile
 def usage():
-    print("\nUsage:\n\nNucPosSimulator <wps_score.tsv.gz> <params.txt> [output-path]\n\n"
-          "\t<wps_score.tsv.gz>     tsv.gz input file with wps scores\n"
+    print("\nUsage:\n\nNucPosSimulator <nucleosome_center_data.tsv.gz> <params.txt> [output-path]\n\n"
+          "\t<nucleosome_center_data.tsv.gz>     tsv.gz input file with nucleosome center data\n"
           "\t<params.txt>    parameter file\n"
           "\t[output-path]   path to an alternative output directory (optional)\n")
-# @profile
 def main():
     try:
         if len(sys.argv) != 3 and len(sys.argv) != 4:
