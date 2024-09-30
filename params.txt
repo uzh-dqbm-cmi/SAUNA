@@ -1,0 +1,7 @@
+SimSteps	default
+Annealing	1
+BindingEnergy	0.0
+StartTemperature	600.0
+EndTemperature	0.1
+NucLength	147
+SmoothingSigma	1.0
