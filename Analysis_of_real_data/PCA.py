@@ -59,8 +59,6 @@ chromosome_lengths = np.array(chromosome_information[1])
 # In[ ]:
 
 
-import pandas as pd
-
 def read_bed_file(bed_file):
     """
     Reads a BED file containing blacklisted regions.
@@ -132,9 +130,6 @@ def get_combined_df(unique_sample_names, mean_interpeak_distances):
 
 
 # In[ ]:
-
-
-import pandas as pd
 
 def filter_blacklisted_regions(dfs, blacklisted_regions):
     """
