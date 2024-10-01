@@ -1,0 +1,10 @@
+gprofiler_official==1.0.0
+matplotlib==3.6.2
+mygene==3.2.2
+numpy==1.25.2
+pandas==2.0.3
+scikit_learn==1.3.0
+scipy==1.14.1
+seaborn==0.13.2
+statsmodels==0.14.1
+whittaker_eilers==0.1.3
