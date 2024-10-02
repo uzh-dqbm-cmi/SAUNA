@@ -22,8 +22,9 @@ The `run_everything` script is designed to analyze BAM files containing cfDNA se
 
 The main script for running the analysis is `run_everything`. This script orchestrates the execution of all other scripts in the 'Running_peak_callers' folder. 
 
-To use the script, run the following command in your terminal:
-./run_everything <bam_directory> <params.txt>
+To use the script, run the following command in your terminal: 
+
+```./run_everything <bam_directory> <params.txt>```
 
 
 - `<bam_directory>`: The path to the directory containing all BAM files to be analyzed.
