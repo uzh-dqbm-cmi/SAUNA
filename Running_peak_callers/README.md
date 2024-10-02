@@ -24,7 +24,9 @@ The main script for running the analysis is `run_everything`. This script orches
 
 To use the script, run the following command in your terminal: 
 
-```./run_everything <bam_directory> <params.txt>```
+```shell 
+./run_everything <bam_directory> <params.txt>
+```
 
 
 - `<bam_directory>`: The path to the directory containing all BAM files to be analyzed.
