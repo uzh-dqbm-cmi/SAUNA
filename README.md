@@ -9,18 +9,22 @@ In addition to the Python packages listed in `requirements.txt`, the following s
 - **GNU Parallel**: Install using your package manager. For example:
   - On Ubuntu:
     ```shell
-    sudo apt-get install parallel```
+    sudo apt-get install parallel
+    ```
   - On macOS:
     ```shell
-    brew install parallel```
+    brew install parallel
+    ```
   
 - **samtools**: A suite of programs for interacting with high-throughput sequencing data. Install using your package manager:
   - On Ubuntu:
     ```shell
-    sudo apt-get install samtools```
+    sudo apt-get install samtools
+    ```
   - On macOS:
     ```shell
-    brew install samtools```
+    brew install samtools
+    ```
     
 Make sure to install these dependencies before running the scripts.
 
