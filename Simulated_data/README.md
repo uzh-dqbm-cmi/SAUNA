@@ -32,7 +32,7 @@ This folder contains scripts for simulating nucleosome configurations and analyz
 ### 1. `data_simulation.py`
 This script creates 5 `tsv.gz` files with simulated data for 5 different nucleosome configurations. It does not take any input parameters. However, it contains a parameter called `coverage`, which can be adjusted to simulate fragment center data for different coverages.
 
-### 2. `F1_scores_over_time.py`
+### 2. `F1_scores_over_time_plots.py`
 **Inputs**:
 - `<temperature_file>`: A TSV file with two columns. The first column contains the temperatures, and the second column contains the annealing steps.
 - `<F1_score_file>`: A TSV file with three columns. The first column contains the mean F1 scores for each annealing step for the scenario with only regular nucleosomes. The second column contains scores for the scenario with phase-shifted nucleosomes, and the third column contains scores for random nucleosomes.
@@ -40,6 +40,10 @@ This script creates 5 `tsv.gz` files with simulated data for 5 different nucleos
 
 **Output**: The script generates a plot showing mean F1 scores for each nucleosome configuration scenario over time and a plot showing the temperature over time. The number of annealing steps (rows) in both the temperature file and the F1 score file must be the same.
 
+**Usage**:
+```shell
+python F1_scores_over_time_plots.py <temperature_file> <F1_score_file> <output_directory>
+```
 
 ### 3. `Mean_F1_different_coverages_plots.py`
 - `<input_file>`: A TSV file containing the mean F1 scores for different scenarios, coverages, and peak callers. It should have 5 columns:
