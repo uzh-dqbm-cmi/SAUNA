@@ -5,9 +5,9 @@ The SAUNA peak caller is designed to simulate nucleosome positions on fragment c
 ## Usage
 
 To run the SAUNA peak caller, use the following command:
-
+```shell
 python SAUNA.py <peak_output.tsv> <nucleosome_center_data.tsv.gz> <params.txt> [output-path]
-
+```
 
 ### Parameters:
 
