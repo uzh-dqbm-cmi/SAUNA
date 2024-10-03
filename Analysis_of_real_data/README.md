@@ -1,4 +1,4 @@
-# Combined Data Analysis with `get_combined_data.sh` and `run_PCA.sh`
+# Analysis of Real Data
 
 This folder contains a set of scripts used for advanced analyses, including combining outputs from the SAUNA peak caller and generating various plots related to nucleosome positioning and gene expression.
 
