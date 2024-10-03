@@ -16,8 +16,9 @@ The main script in this folder is `get_combined_data.sh`, which performs the fol
 ### Usage
 
 The `get_combined_data.sh` script is run with the following command:
+```shell
 ./get_combined_data.sh <bam_directory> <AB_compartment_annotation_file> <ChromHMM_compartment_annotation_file> <gene_expression_file> <TSS_annotation_file>
-
+```
 
 - `<bam_directory>`: Directory containing BAM files and associated subdirectories (organized as per the `run_everything.sh` script).
 - `<AB_compartment_annotation_file>`: Annotation file for AB subcompartments.
@@ -61,8 +62,9 @@ The script `run_PCA.sh` is used to perform PCA (Principal Component Analysis) on
 ### Usage
 
 To run the PCA and gene enrichment analysis, use the following command:
+```shell
 ./run_PCA.sh <directory> <chromosome_lengths> <blacklisted_regions> <genes_file>
-
+```
 
 ### Input Requirements
 
@@ -85,7 +87,7 @@ To run the PCA and gene enrichment analysis, use the following command:
 
 ## Bar Plot Generation with `barplot.py`
 
-This script generates bar plots from enrichment results obtained from gprofiler.
+This script generates a bar plot from enrichment results obtained from gprofiler, as well as a barplot showing the tumor fractions in the SeCT samples.
 
 ### Usage
 
