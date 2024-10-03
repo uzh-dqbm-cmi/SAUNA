@@ -7,12 +7,16 @@ This repository contains scripts and tools for analyzing nucleosome positions in
 In addition to the Python packages listed in `requirements.txt`, the following system dependencies are required to run the scripts:
 
 - **GNU Parallel**: Install using your package manager. For example:
-  - On Ubuntu: `sudo apt-get install parallel`
-  - On macOS: `brew install parallel`
+  - On Ubuntu: ```shell
+    sudo apt-get install parallel```
+  - On macOS: ```shell
+    brew install parallel```
   
 - **samtools**: A suite of programs for interacting with high-throughput sequencing data. Install using your package manager:
-  - On Ubuntu: `sudo apt-get install samtools`
-  - On macOS: `brew install samtools`
+  - On Ubuntu: ```shell
+    sudo apt-get install samtools```
+  - On macOS: ```shell
+    brew install samtools```
     
 Make sure to install these dependencies before running the scripts.
 
