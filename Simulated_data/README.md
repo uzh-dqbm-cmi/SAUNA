@@ -38,12 +38,12 @@ This script creates 5 `tsv.gz` files with simulated data for 5 different nucleos
 - `<F1_score_file>`: A TSV file with three columns. The first column contains the mean F1 scores for each annealing step for the scenario with only regular nucleosomes. The second column contains scores for the scenario with phase-shifted nucleosomes, and the third column contains scores for random nucleosomes.
 - `<output_directory>`: The directory where the output plot will be saved.
 
-**Output**: The script generates a plot showing mean F1 scores for each nucleosome configuration scenario over time and a plot showing the temperature over time. The number of annealing steps (rows) in both the temperature file and the F1 score file must be the same.
-
 **Usage**:
 ```shell
 python F1_scores_over_time_plots.py <temperature_file> <F1_score_file> <output_directory>
 ```
+
+**Output**: The script generates a plot showing mean F1 scores for each nucleosome configuration scenario over time and a plot showing the temperature over time. The number of annealing steps (rows) in both the temperature file and the F1 score file must be the same.
 
 ### 3. `Mean_F1_different_coverages_plots.py`
 - `<input_file>`: A TSV file containing the mean F1 scores for different scenarios, coverages, and peak callers. It should have 5 columns:
@@ -53,5 +53,10 @@ python F1_scores_over_time_plots.py <temperature_file> <F1_score_file> <output_d
   - Column 4: Mean F1 scores for the Snyder peak caller
   - Column 5: Mean F1 scores for the SAUNA peak caller
 - `<output_directory>`: The directory where the output plot will be saved.
+
+**Usage**:
+```shell
+python Mean_F1_different_coverages_plots.py <input_file> <output_directory>
+```
 
 **Output**: The script creates a plot showing the mean F1 scores of different peak callers over different coverages, which is saved in the specified output directory.
