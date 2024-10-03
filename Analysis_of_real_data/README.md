@@ -83,3 +83,25 @@ To run the PCA and gene enrichment analysis, use the following command:
 - **PCA Plot**: Visualizes the PCA with PC1 and PC2 for the SeCT samples.
 - **Gene Enrichment TSVs**: Two TSV files containing the gene enrichment analysis results.
 
+## Bar Plot Generation with `barplot.py`
+
+This script generates bar plots from enrichment results obtained from gprofiler.
+
+### Usage
+
+To run the bar plot generation script, use the following command:
+
+```shell
+python barplot.py <path_to_enrichment_results> <output_dir>
+```
+
+### Inputs
+- `<path_to_enrichment_results>`: Path to the CSV file containing enrichment results generated from the gprofiler web server.
+- `<output_dir>`: Directory where the generated bar plots will be saved.
+
+### Outputs
+
+- **Bar Plots**: 
+  - **enrichment_barplot.svg**: A bar plot displaying the top 5 most significant enrichment terms.
+  - **tumor_fractions_SeCT.svg**: A bar plot illustrating the SeCT samples along with their corresponding tumor fractions.
+
