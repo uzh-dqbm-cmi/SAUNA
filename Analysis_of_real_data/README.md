@@ -87,7 +87,7 @@ To run the PCA and gene enrichment analysis, use the following command:
 
 ## Bar Plot Generation with `barplot.py`
 
-This script generates a bar plot from enrichment results obtained from gprofiler, as well as a barplot showing the tumor fractions in the SeCT samples.
+This script generates a bar plot from enrichment results obtained using gprofiler, as well as a barplot showing the tumor fractions in the SeCT samples.
 
 ### Usage
 
@@ -98,7 +98,7 @@ python barplot.py <path_to_enrichment_results> <output_dir>
 ```
 
 ### Inputs
-- `<path_to_enrichment_results>`: Path to the CSV file containing enrichment results generated from the gprofiler web server.
+- `<path_to_enrichment_results>`: Path to the CSV file containing enrichment results generated using the gprofiler web server.
 - `<output_dir>`: Directory where the generated bar plots will be saved.
 
 ### Outputs
