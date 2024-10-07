@@ -411,26 +411,13 @@ def get_genes(top_positive, top_negative, bin_edges_SeCT, genes_df):
     genes_df['start_bin'] = assign_bins(genes_df['global_start'].values, bin_edges_SeCT)
     genes_df['end_bin'] = assign_bins(genes_df['global_end'].values, bin_edges_SeCT)
 
-    # Determine which bin index to use (e.g., start_bin or end_bin)
-    # Here, we'll use the start_bin for simplicity
-    genes_df['bin_index'] = genes_df['start_bin']
-    
-#     top_positive_array = np.array(top_positive['Bin'])
-#     top_negative_array = np.array(top_negative['Bin'])
-    top_positive_array = top_positive
-    top_negative_array = top_negative
-    # Find associated genes for positive and negative bins using vectorized operations
-    positive_genes = genes_df[genes_df['bin_index'].isin(top_positive_array)]['gene_name'].tolist()
-    negative_genes = genes_df[genes_df['bin_index'].isin(top_negative_array)]['gene_name'].tolist()
-
-
     genes_fully_in_bins = genes_df[genes_df['start_bin'] == genes_df['end_bin']]
 
     # Find genes that are fully contained in the top 100 positive bins
-    positive_genes_full = genes_fully_in_bins[genes_fully_in_bins['start_bin'].isin(top_positive_array)]['gene_name'].tolist()
+    positive_genes_full = genes_fully_in_bins[genes_fully_in_bins['start_bin'].isin(top_positive)]['gene_name'].tolist()
 
     # Find genes that are fully contained in the top 100 negative bins
-    negative_genes_full = genes_fully_in_bins[genes_fully_in_bins['start_bin'].isin(top_negative_array)]['gene_name'].tolist()
+    negative_genes_full = genes_fully_in_bins[genes_fully_in_bins['start_bin'].isin(top_negative)]['gene_name'].tolist()
     return positive_genes_full, negative_genes_full
 
 
