@@ -1,6 +1,6 @@
 # Repository Overview
 
-This repository contains scripts and tools for analyzing nucleosome positions in cfDNA sequencing data, simulating nucleosome configurations, and calculating performance metrics for peak callers.
+This repository contains scripts and tools for analyzing nucleosome positions in cfDNA sequencing data, simulating nucleosome configurations, and performing downstream analyses.
 
 ## System Dependencies
 
