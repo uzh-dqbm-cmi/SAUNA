@@ -1,6 +1,7 @@
 # SAUNA Peak Caller
 
-The SAUNA peak caller is designed to simulate nucleosome positions on fragment center data. It takes input files containing peak positions and nucleosome center data, applies parameters defined in a configuration file, and generates an output file with the simulated nucleosome positions.
+The SAUNA peak caller is designed to simulate nucleosome positions on fragment center data. It takes input files containing peak positions and nucleosome center data, applies parameters defined in a configuration file, and generates an output file with the simulated nucleosome positions. 
+The project contains code adapted from the NucPosSimulator project by Schöpflin et al. 2013, licensed under MIT. For the paper of the NucPosSimulator project see: Robert Schöpflin, Vladimir B. Teif, Oliver Müller, Christin Weinberg, Karsten Rippe, Gero Wedemann, Modeling nucleosome position distributions from experimental nucleosome positioning maps, Bioinformatics, Volume 29, Issue 19, October 2013, Pages 2380–2386, https://doi.org/10.1093/bioinformatics/btt404
 
 ## Usage
 
