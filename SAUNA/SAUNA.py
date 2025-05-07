@@ -1,22 +1,24 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
+# Adapted from the NucPosSimulator project by R. Schöpflin, V. B. Teif, O. Müller, C. Weinberg, K. Rippe and G. Wedemann , licensed under MIT.
+# For the paper of the project see Robert Schöpflin, Vladimir B. Teif, Oliver Müller, Christin Weinberg, Karsten Rippe, Gero Wedemann, Modeling nucleosome position distributions from experimental nucleosome positioning maps, Bioinformatics, Volume 29, Issue 19, October 2013, Pages 2380–2386, https://doi.org/10.1093/bioinformatics/btt404
 
 import types
 import gc
-from tempfile import mkdtemp
+import tempfile
 import os.path as path
 import sys
 import os
 import pandas as pd
 import ctypes
-
-
-
-# In[2]:
-
+import shutil
+import inspect
+import random
+import math
+from typing import List, Iterator, Optional, Tuple, Union
+import numpy as np
+import gzip
 
 EPS = 2.220446049250313e-16  # Equivalent to numeric_limits<double>::epsilon()
 K_B = 8.314513e-3  # in kJ/(mol * K)   GROMACS units
@@ -37,9 +39,6 @@ PAIR_SHIFT_RATE = 0.45-4*10**(-6)
 MAX_LOCUS_LENGTH = 10_000_000_000  # bp
 
 
-# In[3]:
-
-
 def process_file(file_location):
     # Check if the file exists
     if not os.path.exists(file_location):
@@ -49,9 +48,6 @@ def process_file(file_location):
     df = pd.read_csv(file_location, sep='\t', usecols=[1], header = None)
     df = df.values.flatten()
     return df
-
-
-# In[4]:
 
 
 class AbstractException(BaseException):
@@ -69,19 +65,12 @@ class AbstractException(BaseException):
     def getLine(self):
         return self.line
 
-
-# In[5]:
-
-
 class NucPosRunTimeException(AbstractException):
     def __init__(self, msg, file, line):
         super().__init__(msg, file, line)
 
     def __del__(self):
         pass  # No special cleanup needed in Python
-
-
-# In[6]:
 
 
 class NucPosIOException(AbstractException):
@@ -93,9 +82,6 @@ class NucPosIOException(AbstractException):
 
     def __repr__(self):
         return f"NucPosIOException('{self.msg}', '{self.file}', {self.line})"
-
-
-# In[7]:
 
 
 N = 624
@@ -179,9 +165,6 @@ def genrand_res53():
     return (a * 67108864.0 + b) * (1.0 / 9007199254740992.0)
 
 
-# In[8]:
-
-
 class Interval:
      # Define the TYPE enumeration
     class TYPE:
@@ -215,14 +198,6 @@ class Interval:
         self.begin = begin
         self.end = end
         self.length = end - begin
-
-
-
-# In[93]:
-
-
-from typing import List, Iterator, Optional
-import numpy as np
 
 class Configuration:
     def __init__(self, filename: str, start_nucs_input: np.ndarray, minVal: int, length: int,locusBegin: int, locusLength: int, nucLength: int, chromosome: str):
@@ -499,10 +474,6 @@ class Configuration:
     def getTemperature(self):
         return self.temperature
 
-
-# In[12]:
-
-
 def filter_peak_positions(peak_positions, min_distance):
     while True:
      
@@ -511,10 +482,6 @@ def filter_peak_positions(peak_positions, min_distance):
             break
             
     return peak_positions
-
-
-
-# In[61]:
 
 def get_start_Intervals_new(nucLength,locusLength, indices):
     half_nucleosome = int(nucLength/2)
@@ -537,15 +504,6 @@ def get_start_Intervals_new(nucLength,locusLength, indices):
                 subintervals = [Interval(start, start + nucLength, Interval.TYPE.NUC), Interval(start + nucLength, locusLength,Interval.TYPE.DNA)]
                 intervals.extend(subintervals)
     return np.array(intervals),numOfNucleosomes
-
-
-# In[108]:
-
-
-import shutil
-import tempfile
-import inspect
-
 
 class Energy:
     def __init__(self, parent_dir: str, filename: str, probabilities: np.ndarray, locusBegin: int, locusEnd: int, bindingEnergy: float):
@@ -619,9 +577,6 @@ class Energy:
         return self.energyValues
 
 
-# In[95]:
-
-
 class EnergyFactory:
     def __init__(self, parent_dir, filename,pReads, locusBegin, locusEnd):
         assert locusBegin >= 0
@@ -669,12 +624,6 @@ class EnergyFactory:
         assert np.all((0 <= self.nucCenters) & (self.nucCenters <= 1.0))
         return Energy(self.parent_dir,self.filename, self.nucCenters, self.locusBegin, self.locusEnd, binding_energy)
 
-
-# In[43]:
-
-
-import gzip
-
 def open_file(file_path):
     columns_to_load = [3]
     arrs = []
@@ -700,13 +649,6 @@ def open_file(file_path):
         del last_row_df
         
     return arrays[:,0], start ,end,chromosome
-
-
-# In[44]:
-
-
-import os
-from typing import List, Tuple, Union
 
 class ReadReader:
     def __init__(self, filename: str):
@@ -753,12 +695,6 @@ class ReadReader:
     def getMax(self)->int:
         return  self.maxValue
 
-    
-
-
-# In[45]:
-
-
 class ConfigWriter:
     def __init__(self):
         pass
@@ -772,14 +708,6 @@ class ConfigWriter:
         out.flush()
         del config
         gc.collect()
-
-
-# In[20]:
-
-
-from typing import List
-import random
-import math
 
 
 class MoveSelector:
@@ -821,9 +749,6 @@ class MoveSelector:
             print(move.getName(), "\t", move.getAcceptanceRate())
 
 
-# In[21]:
-
-
 class AbstractMove:
     def __init__(self, config, energy):
         self.config = config  # Configuration object
@@ -856,10 +781,6 @@ class AbstractMove:
             return 0.0  # Return 0 if no moves have been prepared
         else:
             return self.accepted / self.counter  # Return acceptance rate as a float between 0 and 1
-
-
-# In[96]:
-
 
 class AddMove(AbstractMove):
     def __init__(self, config, energy):
@@ -899,9 +820,6 @@ class AddMove(AbstractMove):
         return "AddMove"
 
 
-# In[97]:
-
-
 class DeleteMove(AbstractMove):
     def __init__(self, config, energy):
         super().__init__(config, energy)
@@ -937,10 +855,6 @@ class DeleteMove(AbstractMove):
         self.prepared = False
     def getName(self):
         return "DeleteMove"
-
-
-# In[98]:
-
 
 class ShiftMove(AbstractMove):
     def __init__(self, config, energy):
@@ -988,10 +902,6 @@ class ShiftMove(AbstractMove):
     def getName(self):
         return "ShiftMove"
     
-
-
-# In[99]:
-
 
 class PairShiftMove(AbstractMove):
     def __init__(self, config, energy):
@@ -1058,14 +968,6 @@ class PairShiftMove(AbstractMove):
         
     def getName(self):
         return "PairShiftMove"
-
-
-# In[26]:
-
-
-import random
-import math
-import sys
 
 class SimController:
     def __init__(self, config, energyFunction):
@@ -1176,12 +1078,6 @@ class SimController:
                 infoStepSize += 1
 
         return infoStepSize
-
-
-# In[109]:
-
-
-import shutil
 
 def usage():
     print("\nUsage:\n\nNucPosSimulator <peak_output.tsv> <nucleosome_center_data.tsv.gz> <params.txt> [output-path]\n\n"
