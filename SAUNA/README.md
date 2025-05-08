@@ -8,6 +8,7 @@ The code was re-written in python and refactored
   1. initialization, 
   2. use of memory mapping, 
   3. vectorized operations instead of for loops
+  
   These changes enable the analysis of whole genomes, giving utility in whole-genome cfDNA-sequencing
 - to change certain parameters to accomodate the optimization steps
 - to fit python logic (instead of C++)
