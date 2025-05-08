@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# Adapted from the NucPosSimulator project by R. Schöpflin, V. B. Teif, O. Müller, C. Weinberg, K. Rippe and G. Wedemann , licensed under MIT.
+# Adapted from the NucPosSimulator project by R. Schöpflin, V. B. Teif, O. Müller, C. Weinberg, K. Rippe and G. Wedemann , licensed under GPL-3.0.
 # For the paper of the project see Robert Schöpflin, Vladimir B. Teif, Oliver Müller, Christin Weinberg, Karsten Rippe, Gero Wedemann, Modeling nucleosome position distributions from experimental nucleosome positioning maps, Bioinformatics, Volume 29, Issue 19, October 2013, Pages 2380–2386, https://doi.org/10.1093/bioinformatics/btt404
 
 import types
