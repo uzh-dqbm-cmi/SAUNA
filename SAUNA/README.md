@@ -7,7 +7,7 @@ The code was re-written in python and refactored
 - to optimize memory usage and speed: 
   1. initialization, 
   2. use of memory mapping, 
-  3. vectorized operations instead of for loops
+  3. binary search iterator instead of linear search.
   
   These changes enable the analysis of whole genomes, giving utility in whole-genome cfDNA-sequencing
 - to change certain parameters to accomodate the optimization steps
