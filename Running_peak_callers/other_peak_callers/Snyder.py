@@ -4,7 +4,7 @@
 # This code contains code from from the peak-caller developed by Snyder et al. at the Shendure lab, licensed under MIT (see original license in this directory)
 # The peak caller's code is Copyright (c) 2016 Jay Shendure's lab at the University of Washington
 # For the paper of the project see Snyder, Matthew W. et al. Cell-free DNA Comprises an In Vivo Nucleosome Footprint that Informs Its Tissues-Of-Origin. Cell, Volume 164, Issue 1, 57 - 68, DOI: 10.1016/j.cell.2015.11.050 
-#The code was re-written in python3 and refactored 
+#The code was re-written in python3 and refactored to work with signal input data.
 
 import pandas as pd
 import numpy as np
