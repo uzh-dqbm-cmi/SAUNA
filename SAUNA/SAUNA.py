@@ -96,85 +96,37 @@ class NucPosIOException(AbstractException):
         return f"NucPosIOException('{self.msg}', '{self.file}', {self.line})"
 
 
-N = 624
-M = 397
-MATRIX_A = 0x9908b0df   # constant vector a
-UPPER_MASK = 0x80000000  # most significant w-r bits
-LOWER_MASK = 0x7fffffff  # least significant r bits
-
-mt = (ctypes.c_uint32 * N)()
-mti = N + 1  # mti==N+1 means mt[N] is not initialized
+rng = np.random.Generator(np.random.MT19937())
 
 def init_genrand(s):
-    global mt, mti
-    mt[0] = s & 0xffffffff
-    for i in range(1, N):
-        mt[i] = (1812433253 * (mt[i-1] ^ (mt[i-1] >> 30)) + i) & 0xffffffff
-    mti = N
+    global rng
+    rng = np.random.Generator(np.random.MT19937(seed=s))
 
-def init_by_array(init_key, key_length):
-    global mt, mti
-    init_genrand(19650218)
-    i, j = 1, 0
-    k = max(N, key_length)
-    while k:
-        mt[i] = ((mt[i] ^ ((mt[i-1] ^ (mt[i-1] >> 30)) * 1664525)) +
-                 init_key[j] + j) & 0xffffffff
-        i += 1
-        j += 1
-        if i >= N:
-            mt[0] = mt[N-1]
-            i = 1
-        if j >= key_length:
-            j = 0
-        k -= 1
-    for k in range(N-1, 0, -1):
-        mt[i] = ((mt[i] ^ ((mt[i-1] ^ (mt[i-1] >> 30)) * 1566083941)) - i) & 0xffffffff
-        i += 1
-        if i >= N:
-            mt[0] = mt[N-1]
-            i = 1
-    mt[0] = 0x80000000  # MSB is 1; assuring non-zero initial array
+def init_by_array(init_key, key_length=None):
+    seed = 19650218
+    for i, val in enumerate(init_key):
+        seed ^= (val + i + seed) & 0xffffffff
+    init_genrand(seed)
 
 def genrand_int32():
-    global mt, mti
-    mag01 = [0x0, MATRIX_A]
-    if mti >= N:
-        if mti == N + 1:
-            init_genrand(5489)
-        for kk in range(N-M):
-            y = (mt[kk] & UPPER_MASK) | (mt[kk+1] & LOWER_MASK)
-            mt[kk] = mt[kk+M] ^ (y >> 1) ^ mag01[y & 0x1]
-        for kk in range(N-M, N-1):
-            y = (mt[kk] & UPPER_MASK) | (mt[kk+1] & LOWER_MASK)
-            mt[kk] = mt[kk+(M-N)] ^ (y >> 1) ^ mag01[y & 0x1]
-        y = (mt[N-1] & UPPER_MASK) | (mt[0] & LOWER_MASK)
-        mt[N-1] = mt[M-1] ^ (y >> 1) ^ mag01[y & 0x1]
-        mti = 0
-    y = mt[mti]
-    mti += 1
-    y ^= (y >> 11)
-    y ^= (y << 7) & 0x9d2c5680
-    y ^= (y << 15) & 0xefc60000
-    y ^= (y >> 18)
-    return y
+    return int(rng.integers(0, 2**32, dtype=np.uint32))
 
 def genrand_int31():
-    return genrand_int32() >> 1
+    return int(rng.integers(0, 2**31, dtype=np.uint32))
 
 def genrand_real1():
-    return genrand_int32() * (1.0 / 4294967295.0)
+    return genrand_int32() / 4294967295.0  
 
 def genrand_real2():
-    return genrand_int32() * (1.0 / 4294967296.0)
+    return genrand_int32() / 4294967296.0  
 
 def genrand_real3():
-    return ((genrand_int32() >> 1) + 0.5) * (1.0 / 4294967296.0)
+    return (genrand_int31() + 0.5) / 2**31  
 
 def genrand_res53():
-    a = genrand_int32() >> 5
-    b = genrand_int32() >> 6
-    return (a * 67108864.0 + b) * (1.0 / 9007199254740992.0)
+    a = rng.integers(0, 1 << 27, dtype=np.uint64)
+    b = rng.integers(0, 1 << 26, dtype=np.uint64)
+    return float((a << 26) + b) / 2**53
 
 
 class Interval:
