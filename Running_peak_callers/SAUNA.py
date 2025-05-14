@@ -1051,7 +1051,7 @@ def usage():
           "\t[output-path]   path to an alternative output directory (optional)\n")
 def main():
     try:
-        if len(sys.argv) != 3 and len(sys.argv) != 4:
+        if len(sys.argv) != 4 and len(sys.argv) != 5:
            usage()
            sys.exit(0)
         file_location = sys.argv[1]      
