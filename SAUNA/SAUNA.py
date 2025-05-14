@@ -2,9 +2,9 @@
 # coding: utf-8
 
 # This code contains code from from the NucPosSimulator project by R. Schöpflin, V. B. Teif, O. Müller, C. Weinberg, K. Rippe and G. Wedemann , licensed under GPL-3.0 (https://opensource.org/license/gpl-3-0)
-# NucPosSimulator is Copyright (C) 2013  Robert Schoepflin, Gero Wedemann     Contact: robert.schoepflin@fh-stralsund.de or gero.wedemann@fh-stralsund.de
+# NucPosSimulator is Copyright (C) 2013  Robert Schoepflin, Gero Wedemann. Contact: robert.schoepflin@fh-stralsund.de or gero.wedemann@fh-stralsund.de
 # For the paper of the project see Robert Schöpflin, Vladimir B. Teif, Oliver Müller, Christin Weinberg, Karsten Rippe, Gero Wedemann, Modeling nucleosome position distributions from experimental nucleosome positioning maps, Bioinformatics, Volume 29, Issue 19, October 2013, Pages 2380–2386, https://doi.org/10.1093/bioinformatics/btt404
-#The code was re-written in python and refactored 
+# The code was re-written in python using Chat-GPT and refactored 
 #- to optimize memory usage and speed: 
 #  1. initialization, 
 #  2. use of memory mapping, 
