@@ -1,6 +1,7 @@
 # Compliance update
 
-This repository contains code (in the SAUNA folder) adapted from https://doi.org/10.1093/bioinformatics/btt404 by Schöpflin et al. 2013, and also code (in the Running_peak_callers/other_peak_callers) folder adapted from https://doi.org/10.1016/j.cell.2015.11.050 by Snyder et al. 2016. The documentation and licensing of the repository has been updated between 8th and 12th May 2025 to comply with the GPL-3.0 license of the original code and to attribute code to the original authors and describe changes. The original licenses can be found in the repository's main folder.
+This repository contains code (in the SAUNA folder) adapted from https://doi.org/10.1093/bioinformatics/btt404 by Schöpflin et al. 2013, and also code (in the Running_peak_callers/other_peak_callers) folder adapted from https://doi.org/10.1016/j.cell.2015.11.050 by Snyder et al. 2016. The documentation and licensing of the repository has been updated between 8th and 14th May 2025 to comply with the GPL-3.0 license of the original code and to attribute code to the original authors and describe changes. The original licenses can be found in the repository's main folder. We apologize for the oversight.
+Do not use information you obtained from this repository prior to 14th May 2025!
 
 # Repository Overview
 
