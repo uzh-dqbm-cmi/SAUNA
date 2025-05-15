@@ -13,7 +13,9 @@ The code was re-written in python and refactored
 - to change certain parameters to accomodate the optimization steps
 - to fit python logic (instead of C++)
 - for legibility
-- new functions were added to process a different input format (SAUNA uses genome-wide signal data of e.g. nucleosome centers whereas NucPosSimulator uses sequencing read inputs) 
+- new functions were added to process a different input format (SAUNA uses genome-wide signal data of e.g. nucleosome centers whereas NucPosSimulator uses sequencing read inputs)
+
+The modifications are detailed line-by-line in the code_comparison.pdf in this folder.
 
 ## Usage
 
